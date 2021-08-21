@@ -1,9 +1,0 @@
-dependencies:
-- name: postgresql
-  repository: https://charts.helm.sh/stable/
-  version: 0.8.3
-- name: postgresql
-  repository: https://charts.helm.sh/stable/
-  version: 0.8.3
-digest: sha256:01b75df382020e3f5c7e96ac6e48aa075a8395f11f4767b3334fa1b192468f0e
-generated: "2020-12-21T13:12:38.132567071-07:00"
