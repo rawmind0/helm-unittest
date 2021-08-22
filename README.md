@@ -1,8 +1,6 @@
 # helm unittest
 
-[![CircleCI](https://circleci.com/gh/quintush/helm-unittest.svg?style=svg)](https://circleci.com/gh/quintush/helm-unittest)
-[![Go Report Card](https://goreportcard.com/badge/github.com/quintush/helm-unittest)](https://goreportcard.com/report/github.com/quintush/helm-unittest)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=quintush_helm-unittest&metric=alert_status)](https://sonarcloud.io/dashboard?id=quintush_helm-unittest)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rancher/helm-unittest)](https://goreportcard.com/report/github.com/rancher/helm-unittest)
 
 Unit test for *helm chart* in YAML to keep your chart consistent and robust!
 
@@ -35,35 +33,10 @@ If you are ready for writing tests, check the [DOCUMENT](./DOCUMENT.md) for the 
 ## Install
 
 ```
-$ helm plugin install https://github.com/quintush/helm-unittest
+$ helm plugin install https://github.com/rancher/helm-unittest
 ```
 
 It will install the latest version of binary into helm plugin directory.
-
-## Docker Usage
-
-``` 
-# run help of latest helm with latest helm unittest plugin
-docker run -ti --rm -v $(pwd):/apps quintush/helm-unittest
-
-# run help of specific helm version with specific helm unittest plugin version
-docker run -ti --rm -v $(pwd):/apps quintush/helm-unittest:3.3.0-0.2.2
-
-# run unittests of a helm 2 chart
-# make sure to mount local folder to /apps in container
-docker run -ti --rm -v $(pwd):/apps quintush/helm-unittest:2.16.10-0.2.2 .
-
-# run unittests of a helm 3 chart
-# make sure to mount local folder to /apps in container
-docker run -ti --rm -v $(pwd):/apps quintush/helm-unittest:3.3.0-0.2.2 -3 .
-
-# run unittests of a helm 3 chart with Junit output for CI validation
-# make sure to mount local folder to /apps in container
-# the test-output.xml will be available in the local folder.
-docker run -ti --rm -v $(pwd):/apps quintush/helm-unittest:3.3.0-0.2.2 -3 -o test-output.xml -t junit .
-```
-
-The docker container contains the fully installed helm client, including the helm-unittest plugin.
 
 ## Get Started
 
@@ -233,7 +206,7 @@ Issues and PRs are welcome!
 Before start developing this plugin, you must have [go] (https://golang.org/doc/install) >= 1.14 installed, and run:
 
 ```
-git clone git@github.com:quintush/helm-unittest.git
+git clone git@github.com:rancher/helm-unittest.git
 cd helm-unittest
 ```
 
