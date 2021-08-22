@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -e
+
+source $(dirname $0)/version
+source $(dirname $0)/common
+cd $(dirname $0)/..
+BASE_DIR=$(pwd)
+
+echo "==> Packaging binaries version ${VERSION} ..."
+
+if [ -d ${DIST_DIR}/${VERSION} ]; then
+    rm -rf ${DIST_DIR}/${VERSION}
+fi
+mkdir -p ${DIST_DIR}/${VERSION}
+
+ARCHIVE_DIR=${ARCHIVE_BASE}/${VERSION}
+if [ -d ${ARCHIVE_DIR} ]; then
+    rm -rf ${ARCHIVE_DIR}
+fi
+mkdir -p ${ARCHIVE_DIR}
+
+cp README.md LICENSE plugin.yaml ${ARCHIVE_DIR}/
+
+for OS in ${OS_PLATFORM_ARG[@]}; do
+    for ARCH in ${OS_ARCH_ARG[${OS}]}; do
+        EXT=
+        if test "$OS" = "windows"; then
+            EXT=.exe
+        fi
+        if [ -f ${BUILD_DIR}/${OS}/${ARCH}/${BIN_NAME}${EXT} ]; then
+            cp -p ${BUILD_DIR}/${OS}/${ARCH}/${BIN_NAME}${EXT} ${ARCHIVE_DIR}/
+            (
+                cd ${ARCHIVE_DIR}
+                ARCHIVE=${NAME}-${OS}-${ARCH}.tgz
+                echo "Packaging dist/artifacts/${VERSION}/${ARCHIVE} ..."
+                tar -zcvf ${ARCHIVE} *
+                cd ${BASE_DIR}
+                mv ${ARCHIVE_DIR}/${ARCHIVE} ${DIST_DIR}/${VERSION}/
+            )
+            rm ${ARCHIVE_DIR}/${BIN_NAME}${EXT}
+        fi
+    done
+done
+cd ${BASE_DIR}
+(
+    cd ${DIST_DIR}/${VERSION}/
+    shasum -a 256 * > ${NAME}-checksum_SHA256SUMS
+    rm -rf ${ARCHIVE_DIR}
+)

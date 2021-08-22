@@ -7,7 +7,19 @@ HELM_PLUGIN_DIR := $(HELM_DATA_HOME)/plugins/helm-unittest
 VERSION := $(shell sed -n -e 's/version:[ "]*\([^"]*\).*/\1/p' plugin.yaml)
 DIST := ./_dist
 LDFLAGS := "-X main.version=${VERSION} -extldflags '-static'"
-DOCKER ?= "quintush/helm-unittest"
+DOCKER ?= "rancher/helm-unittest"
+
+.PHONY: rancher-build
+rancher-build:
+	@scripts/build
+
+.PHONY: rancher-test
+rancher-test:
+	go test ./... -v -cover -timeout 30m
+
+.PHONY: rancher-package
+rancher-package:
+	@scripts/package
 
 .PHONY: install
 install: bootstrap build
@@ -20,7 +32,7 @@ hookInstall: bootstrap build
 
 .PHONY: unittest
 unittest:
-	go test ./... -v -cover
+	go test ./... -v -cover -timeout 30m
 
 .PHONY: build
 build: unittest
@@ -43,6 +55,7 @@ dist:
 
 .PHONY: bootstrap
 bootstrap:
+	go mod tidy
 
 .PHONY: dockerdist
 dockerdist:

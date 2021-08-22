@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+
+source $(dirname $0)/version
+source $(dirname $0)/common
+
+echo "==> Building code binaries version ${VERSION} ..."
+
+LDFLAGS="-w -s -X main.version=${VERSION} -extldflags '-static'"
+
+CGO_ENABLED=0 go build -ldflags="${LDFLAGS}" -o bin/${BIN_NAME} ./cmd/${NAME}
+
+if [ -n "$CROSS" ]; then
+    rm -rf ${BUILD_DIR}
+    mkdir -p ${BUILD_DIR}
+    for OS in ${OS_PLATFORM_ARG[@]}; do
+        for ARCH in ${OS_ARCH_ARG[${OS}]}; do
+            mkdir -p ${BUILD_DIR}/${OS}/${ARCH}
+            OUTPUT_BIN="${BUILD_DIR}/${OS}/${ARCH}/${BIN_NAME}"
+            if test "$OS" = "windows"; then
+                OUTPUT_BIN="${OUTPUT_BIN}.exe"
+            fi
+            echo "Building binary for $OS/$ARCH..."
+            GOARCH=${ARCH} GOOS=${OS} CGO_ENABLED=0 go build \
+                  -ldflags="${LDFLAGS}" \
+                  -o ${OUTPUT_BIN} ./cmd/${NAME}
+        done
+    done
+fi

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+declare -A OS_ARCH_ARG
+
+OS_PLATFORM_ARG=(linux windows darwin)
+OS_ARCH_ARG[linux]="amd64 arm arm64"
+OS_ARCH_ARG[windows]="amd64"
+OS_ARCH_ARG[darwin]="amd64 arm64"
+
+ARCHIVE_BASE=build/archive
+BUILD_DIR=build/bin
+DIST_DIR=dist/artifacts
+BIN_NAME="untt"
+NAME="helm-unittest"
