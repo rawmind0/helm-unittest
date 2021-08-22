@@ -2,8 +2,8 @@
 
 # borrowed from https://github.com/technosophos/helm-template
 PROJECT_NAME="helm-unittest"
-PROJECT_GH="quintush/$PROJECT_NAME"
-PROJECT_CHECKSUM_FILE="$PROJECT_NAME-checksum.sha"
+PROJECT_GH="rancher/$PROJECT_NAME"
+PROJECT_CHECKSUM_FILE="$PROJECT_NAME-checksum_SHA256SUMS"
 
 : "${HELM_PLUGIN_PATH:="$HELM_PLUGIN_DIR"}"
 
@@ -51,7 +51,7 @@ initOS() {
 # verifySupported checks that the os/arch combination is supported for
 # binary builds.
 verifySupported() {
-  local supported="linux-arm64\nlinux-amd64\nmacos-amd64\nwindows-amd64"
+  local supported="linux-arm64\nlinux-amd64\nmacos-amd64\nmacos-arm64\nwindows-amd64"
   if ! echo "$supported" | grep -q "$OS-$ARCH"; then
     echo "No prebuild binary for $OS-$ARCH."
     exit 1

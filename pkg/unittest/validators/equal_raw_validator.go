@@ -3,7 +3,7 @@ package validators
 import (
 	"reflect"
 
-	"github.com/lrills/helm-unittest/internal/common"
+	"github.com/rancher/helm-unittest/internal/common"
 )
 
 // EqualRawValidator validate whether the raw value equal to Value

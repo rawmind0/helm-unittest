@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/lrills/helm-unittest/internal/common"
-	"github.com/lrills/helm-unittest/pkg/unittest/snapshot"
+	"github.com/rancher/helm-unittest/internal/common"
+	"github.com/rancher/helm-unittest/pkg/unittest/snapshot"
 	"github.com/pmezard/go-difflib/difflib"
 )
 

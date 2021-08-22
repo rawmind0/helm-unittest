@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/lrills/helm-unittest/internal/common"
+	"github.com/rancher/helm-unittest/internal/common"
 	yaml "gopkg.in/yaml.v2"
 )
 

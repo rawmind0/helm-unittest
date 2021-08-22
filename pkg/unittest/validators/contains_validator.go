@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/lrills/helm-unittest/internal/common"
-	"github.com/lrills/helm-unittest/pkg/unittest/valueutils"
+	"github.com/rancher/helm-unittest/internal/common"
+	"github.com/rancher/helm-unittest/pkg/unittest/valueutils"
 	yaml "gopkg.in/yaml.v2"
 )
 

@@ -3,7 +3,7 @@ package results
 import (
 	"fmt"
 
-	"github.com/lrills/helm-unittest/internal/printer"
+	"github.com/rancher/helm-unittest/internal/printer"
 )
 
 // AssertionResult result return by Assertion.Assert

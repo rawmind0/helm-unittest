@@ -21,24 +21,6 @@
       AssertType: (string) (len=10) "matchRegex",
       Not: (bool) false,
       CustomInfo: (string) ""
-    }),
-    (*unittest.AssertionResult)({
-      Index: (int) 2,
-      FailInfo: ([]string) {
-      },
-      Passed: (bool) true,
-      AssertType: (string) (len=5) "equal",
-      Not: (bool) false,
-      CustomInfo: (string) ""
-    }),
-    (*unittest.AssertionResult)({
-      Index: (int) 3,
-      FailInfo: ([]string) {
-      },
-      Passed: (bool) true,
-      AssertType: (string) (len=5) "equal",
-      Not: (bool) false,
-      CustomInfo: (string) ""
     })
   },
   Duration: (time.Duration) 0s
